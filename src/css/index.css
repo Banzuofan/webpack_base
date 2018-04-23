@@ -1,4 +1,6 @@
 #root{
-    background-color: green;
+    background-color:lightgrey;
     color: red;
+    padding: 5px 15px;
+    border-radius: 8px;
 }

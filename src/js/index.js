@@ -8,8 +8,7 @@ $(document).ready(function(){
         alert(add(4, 5));
     };
     
-    alert('ready');
     $('root').click(function () {
-        alert('click on root');
+        alert('click on root1');
     });
 });

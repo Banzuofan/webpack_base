@@ -43,7 +43,7 @@ var html_plugins = function () {
         var conf = {
             // template: 'html!' + filePath,
             template: filePath,
-            filename: filename + '.html'
+            filename: filename !== 'index' ? ('html/' + filename + '.html') : (filename + '.html')
         }
         //如果和入口js文件同名
         if (filename in entriesFiles) {
@@ -62,13 +62,14 @@ module.exports = {
     entry: entries(),
     output: {
         path: distDir,
-        filename: 'src/js/[name].js'
+        filename: 'js/[name].js'
     },
     resolve: {
         extensions: ['.js', '.jsx', 'json', '.css'], //需要编译的文件类型
     },
     devServer: {
         contentBase: distDir,
+        // contentBase: srcDir,
         compress: true,
         port: 9000
     },
@@ -112,15 +113,15 @@ module.exports = {
         ]
     },
     plugins: [
-        ...html_plugins(),
         // extractCSS,
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             // filename: "[name].css",
-            filename: 'src/css/[name].css',
+            filename: 'css/[name].css',
             chunkFilename: "[id].css"
         }),
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['dist']),
+        ...html_plugins(),
     ]
 }

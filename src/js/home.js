@@ -6,7 +6,7 @@ import '../css/home.css';
 $(document).ready(function(){
     alert('welcome');
     document.getElementById("home_btn").onclick = function () {
-        alert("home_btn");
+        alert("home_btn1");
     };
 });
 
