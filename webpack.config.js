@@ -1,14 +1,14 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");// deprecated since from webpack v4
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");// fit webpack v4
 
 const path = require('path');
 const glob = require('glob');
 
-const srcDir = path.resolve(__dirname, 'src');// src的绝对路径
-const distDir = path.resolve(__dirname, 'dist');// dist的绝对路径
-var nodeModPath = path.resolve(__dirname, 'node_modules');// node_modules的绝对路径
+const srcDir = path.resolve(__dirname, 'src');// src absolute path
+const distDir = path.resolve(__dirname, 'dist');// dist absolute path
+var nodeModPath = path.resolve(__dirname, 'node_modules');// node_modules absolute path
 
 console.log('srcDir_' + srcDir);
 console.log('distDir_' + distDir);
