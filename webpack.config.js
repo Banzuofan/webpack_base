@@ -8,11 +8,11 @@ const glob = require('glob');
 
 const srcDir = path.resolve(__dirname, 'src');// src absolute path
 const distDir = path.resolve(__dirname, 'dist');// dist absolute path
-var nodeModPath = path.resolve(__dirname, 'node_modules');// node_modules absolute path
+const nodeModPath = path.resolve(__dirname, 'node_modules');// node_modules absolute path
 
-console.log('srcDir_' + srcDir);
-console.log('distDir_' + distDir);
-console.log('nodeModPath_' + nodeModPath);
+// console.log('srcDir_' + srcDir);
+// console.log('distDir_' + distDir);
+// console.log('nodeModPath_' + nodeModPath);
 
 
 var entries = function () {
@@ -27,7 +27,8 @@ var entries = function () {
     }
     return map;
 }
-console.log('>>>>>' + JSON.stringify(entries()));
+
+// console.log('>>>>>' + JSON.stringify(entries()));
 
 
 // const extractCSS = new ExtractTextPlugin('src/css/index.css');
@@ -62,14 +63,14 @@ module.exports = {
     entry: entries(),
     output: {
         path: distDir,
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
     },
     resolve: {
-        extensions: ['.js', '.jsx', 'json', '.css'], //需要编译的文件类型
+        extensions: ['.js', '.jsx', '.json', '.css', '.png', '.jpg'], //需要编译的文件类型
     },
     devServer: {
-        contentBase: distDir,
-        // contentBase: srcDir,
+        // contentBase: distDir,
+        contentBase: srcDir,
         compress: true,
         port: 9000
     },
@@ -109,11 +110,37 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader', 
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/, 
+                exclude: /node_modules/, 
+                use: [
+                    { 
+                        loader: 'file-loader', 
+                        options: {
+                            name: '[hash].[ext]',
+                            // outputPath: 'res/images/',
+                            useRelativePath: true,
+                            publicPath: '../res/images/',
+                        } 
+                    },
+                    // {
+                    //     loader: 'url-loader', 
+                    //     options:{
+                    //         limit: 1024, 
+                    //         // outputPath: 'res/images/',
+                    //         useRelativePath: true,
+                    //         name: '[name].[ext]',
+                    //         publicPath: '../res/images/',// 不指定此参数将处理background的url，"../image/xxx.png" => "image/xxx.png"
+                    //     }
+                    // }
+                ]
             }
         ]
     },
     plugins: [
         // extractCSS,
+        new CleanWebpackPlugin(['dist']),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -121,7 +148,6 @@ module.exports = {
             filename: 'css/[name].css',
             chunkFilename: "[id].css"
         }),
-        new CleanWebpackPlugin(['dist']),
         ...html_plugins(),
     ]
 }

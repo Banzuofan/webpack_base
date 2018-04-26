@@ -1,3 +1,48 @@
 body{
     background-color: lightslategray;
+    padding: 0px;
+    background: url(../res/images/bg.png) no-repeat center;
+}
+
+/* div.menu{
+    
+} */
+
+div.menu ul{
+    background-color: silver;
+    list-style:none;
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.menu ul li{
+    float: left;
+}
+
+div.menu ul li a, div.menu li a:visited
+{
+    background-color: #465c71; 
+    border: 1px #4e667d solid; 
+    color: #dde4ec; 
+    display: block; 
+    line-height: 1.35em; 
+    padding: 4px 10px; 
+    text-decoration: none; 
+    white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
+}
+
+div.menu ul li a:hover
+{
+    background-color: #bfcbd6; 
+    color: #465c71; 
+    text-decoration: none; 
+}
+/* 所有class为menu的div中的ul中的a样式(鼠标点击元素时的样式) */
+div.menu ul li a:active
+{
+    background-color: #465c71; 
+    color: #cfdbe6; 
+    text-decoration: none; 
 }
